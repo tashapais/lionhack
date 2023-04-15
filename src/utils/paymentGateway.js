@@ -1,5 +1,6 @@
 import axios from 'axios';
-import * as openpgp from 'openpgp'
+//import * as openpgp from 'openpgp';
+import { Message, key, encrypt } from 'openpgp';
 import { v4 as uuidv4 } from 'uuid';
 /**
   * CircleAPI implementation
@@ -84,11 +85,11 @@ export const makePayment = async (paymentParams) => {
     //atob
     const decodedPublicKey = Buffer.from(publicKey, 'base64').toString('binary')
     const options = {
-      message: await openpgp.message.fromText(JSON.stringify(tempDetails)),
-      publicKeys: (await openpgp.key.readArmored(decodedPublicKey)).keys,
+      message: await Message.fromText(JSON.stringify(tempDetails)),
+      publicKeys: (await key.readArmored(decodedPublicKey)).keys,
     }
 
-    const ciphertext = await openpgp.encrypt(options)
+    const ciphertext = await encrypt(options)
     //btoa
     const encryptedMessage = Buffer.from(ciphertext.data).toString('base64')
     /**
@@ -243,13 +244,13 @@ export const requestSOLFromBackend = async (solAmount, selfPublicKey) => {
     if (!result.status) {
       return {
         status: false,
-        message: "Please check the sender account balance, if it has SOL balance to transfer."
+        Message: "Please check the sender account balance, if it has SOL balance to transfer."
       }
     }
 
     return {
       status: true,
-      message: "Successfully Transferred the amount."
+      Message: "Successfully Transferred the amount."
     }
 
   } catch (err) {
