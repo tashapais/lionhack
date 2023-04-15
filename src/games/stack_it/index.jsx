@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./styles.scss";
 const StackIt = () => {
     const [time, setTime] = useState(0);
     var timing = React.useRef();
-    const history = useHistory()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -47,7 +47,7 @@ const StackIt = () => {
     }, []);
     const withdrawEarnings = () => {
         const score = document.getElementById("score").textContent;
-        history.push(`/createNFT/${Number(score)}/${time}`)
+        navigate.push(`/createNFT/${Number(score)}/${time}`)
         // alert(`Achieved ${Number(score)} points in ${time} seconds!`)
 
     }

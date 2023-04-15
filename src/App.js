@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import stack from './assets/images/stack.png'
 import './App.css';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import {
   clusterApiUrl, Connection, LAMPORTS_PER_SOL, PublicKey,
 } from "@solana/web3.js";
@@ -21,7 +21,7 @@ function App() {
   const [provider, setProvider] = useState()
   const [providerPubKey, setProviderPub] = useState()
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   /**
    * 
@@ -80,7 +80,7 @@ function App() {
                 <button
                   className="modal__btn yes"
                   onClick={() => {
-                    history.push(`/purchase/stack`);
+                    navigate.push(`/purchase/stack`);
                     onClose();
                   }}
                 >
@@ -120,7 +120,7 @@ function App() {
      * If the status is true, that means transaction got successful and we can proceed
      */
     setLoading(false)
-    history.push('/stack')
+    navigate.push('/stack')
 
   }
 

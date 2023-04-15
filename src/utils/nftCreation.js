@@ -464,7 +464,7 @@ extendBorsh();
     );
 
     updateInstructions.push(
-      splToken.Token.createMintToInstruction(
+      splToken.createMintToInstruction(
         TOKEN_PROGRAM_ID,
         new PublicKey(mintKey),
         new PublicKey(recipientKey),
@@ -662,7 +662,7 @@ extendBorsh();
     );
   
     instructions.push(
-      splToken.Token.createInitMintInstruction(
+      splToken.createInitializeMintInstruction(
         TOKEN_PROGRAM_ID,
         account,
         decimals,
@@ -690,7 +690,7 @@ extendBorsh();
     );
   
     instructions.push(
-      splToken.Token.createInitAccountInstruction(TOKEN_PROGRAM_ID, mint, account, owner),
+      splToken.createInitializeAccountInstruction(TOKEN_PROGRAM_ID, mint, account, owner),
     );
   
     return account;

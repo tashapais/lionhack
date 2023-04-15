@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Cards from 'react-credit-cards';
 import {
   formatCreditCardNumber,
@@ -30,7 +30,7 @@ const defaultCardValues = {
 };
 
 function Purchase() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [provider, setProvider] = useState(window.solana);
   const [cardState, setCardState] = useState({
@@ -96,7 +96,7 @@ function Purchase() {
     await sleepUtil(3000);
     toast.info(`Taking you to the game menu...`);
     await sleepUtil(500);
-    history.push(`/stack`);
+    navigate.push(`/stack`);
     setCardState({ ...defaultCardValues });
   };
 
