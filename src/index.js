@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
 import StackIt from './games/stack_it'
@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Routes>
+      <Switch>
         <Route exact path="/">
           <App />
         </Route>
@@ -24,7 +24,7 @@ ReactDOM.render(
         <Route path="/createNFT/:score/:timeSpent">
           <GenerateNFT />
         </Route>
-      </Routes>
+      </Switch>
 
     </Router>
   </React.StrictMode>,
